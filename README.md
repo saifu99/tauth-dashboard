@@ -70,7 +70,6 @@ mern-auth-dashboard/
 │
 └── README.md
 
----
 
 ## Environment Variables
 
@@ -84,7 +83,7 @@ JWT_SECRET=your_jwt_secret
 
 ▶️ Run the Project Locally
 1. Clone the repository
-git clone https://github.com/your-username/mern-auth-dashboard.git
+git clone https://github.com/saifu99/mern-auth-dashboard.git
 cd mern-auth-dashboard
 
 2. Backend Setup
