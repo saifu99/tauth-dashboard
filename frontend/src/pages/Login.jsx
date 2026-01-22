@@ -14,7 +14,7 @@ export default function LoginPage() {
     try {
       const res = await API.post("/api/auth/login", { email, password });
       localStorage.setItem("token", res.data.token); // save JWT
-      navigate("/dashboard");
+      navigate("/dashboard", { state: { fromLogin: true } });
     } catch (err) {
       console.error(err);
       setError(err.response?.data?.message || "Network error");

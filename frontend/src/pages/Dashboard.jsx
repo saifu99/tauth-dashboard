@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import API from "../services/api"; // your axios instance
 
 export default function Dashboard() {
@@ -12,6 +12,16 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
+
+  const location = useLocation();
+  const fromLogin = location.state?.fromLogin;
+
+  useEffect(() => {
+    if (fromLogin) {
+      window.history.replaceState({}, document.title);
+    }
+  }, [fromLogin]);
+
   const token = localStorage.getItem("token");
 
   // Redirect if not authenticated
@@ -47,7 +57,7 @@ export default function Dashboard() {
     (task) =>
       task.title.toLowerCase().includes(search.toLowerCase()) ||
       (task.description &&
-        task.description.toLowerCase().includes(search.toLowerCase()))
+        task.description.toLowerCase().includes(search.toLowerCase())),
   );
 
   const handleLogout = () => {
@@ -63,7 +73,7 @@ export default function Dashboard() {
       const res = await API.post(
         "/api/tasks",
         { title, description },
-        { headers: { Authorization: `Bearer ${token}` } }
+        { headers: { Authorization: `Bearer ${token}` } },
       );
 
       setTasks([res.data, ...tasks]);
@@ -81,11 +91,11 @@ export default function Dashboard() {
       await API.put(
         `/api/tasks/${id}`,
         { completed: !completed },
-        { headers: { Authorization: `Bearer ${token}` } }
+        { headers: { Authorization: `Bearer ${token}` } },
       );
 
       setTasks((prev) =>
-        prev.map((t) => (t._id === id ? { ...t, completed: !completed } : t))
+        prev.map((t) => (t._id === id ? { ...t, completed: !completed } : t)),
       );
     } catch (err) {
       console.error(err);
@@ -104,7 +114,7 @@ export default function Dashboard() {
     }
   };
 
-  if (loading) {
+  if (loading || fromLogin) {
     return (
       <div className="min-h-screen flex items-center justify-center text-gray-600">
         Loading dashboard...
@@ -186,7 +196,9 @@ export default function Dashboard() {
                       {task.title}
                     </h3>
                     {task.description && (
-                      <p className="text-sm text-gray-500">{task.description}</p>
+                      <p className="text-sm text-gray-500">
+                        {task.description}
+                      </p>
                     )}
                   </div>
 
