@@ -5,6 +5,10 @@ import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 export default function App() {
+  useEffect(() => {
+  fetch("https://YOUR-BACKEND.onrender.com/health");
+}, []);
+
   return (
     <Router>
       <Routes>
