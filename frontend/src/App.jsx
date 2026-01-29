@@ -6,7 +6,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 
 export default function App() {
   useEffect(() => {
-  fetch("https://YOUR-BACKEND.onrender.com/health");
+  fetch("https://mern-auth-dashboard-m5xl.onrender.com/health");
 }, []);
 
   return (
