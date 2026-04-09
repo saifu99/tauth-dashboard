@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import API from "../services/api"; // your axios instance
+import API from "../services/api"; //your axios instance
 
 export default function Dashboard() {
   const [user, setUser] = useState(null);
