@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import API from "../services/api"; // <-- axios instance
+import API from "../services/api"; //axios instance
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -13,7 +13,7 @@ export default function LoginPage() {
 
     try {
       const res = await API.post("/api/auth/login", { email, password });
-      localStorage.setItem("token", res.data.token); // save JWT
+      localStorage.setItem("token", res.data.token); //save JWT
       navigate("/dashboard", { state: { fromLogin: true } });
     } catch (err) {
       console.error(err);
