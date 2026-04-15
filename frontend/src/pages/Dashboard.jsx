@@ -24,7 +24,7 @@ export default function Dashboard() {
 
   const token = localStorage.getItem("token");
 
-  // Redirect if not authenticated
+  //Redirect if not authenticated
   useEffect(() => {
     if (!token) navigate("/login");
   }, [token, navigate]);
@@ -35,12 +35,12 @@ export default function Dashboard() {
     }
   }, [fromLogin]);
 
-  // Fetch profile + tasks
+  //Fetch profile + tasks
   useEffect(() => {
     let timeoutId = setTimeout(() => {
       setLoading(false);
       setError("Server is taking too long. Please refresh.");
-    }, 8000); // 8 seconds hard stop
+    }, 8000); //8 seconds hard stop
 
     const fetchData = async () => {
       try {
