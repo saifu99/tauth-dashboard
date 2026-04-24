@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import API from "../services/api"; // your axios instance
+import API from "../services/api"; //your axios instance
 
 export default function RegisterPage() {
   const [name, setName] = useState("");
@@ -14,7 +14,7 @@ export default function RegisterPage() {
 
     try {
       const res = await API.post("/api/auth/register", { name, email, password });
-      // Axios automatically throws for non-2xx status codes, so no need for res.ok
+      //Axios automatically throws for non-2xx status codes, so no need for res.ok
       navigate("/login");
     } catch (err) {
       console.error(err);
